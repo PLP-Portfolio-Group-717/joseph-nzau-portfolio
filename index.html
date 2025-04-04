@@ -13,19 +13,20 @@
         <nav class="navbar">
             <div class="nav-container">
                 <h1 class="logo">Joseph Nzau</h1>
-                <div class="hamburger">
+                <input type="checkbox" id="nav-toggle" class="nav-toggle">
+                <label for="nav-toggle" class="hamburger">
                     <span></span>
                     <span></span>
                     <span></span>
-                </div>
+                </label>
                 <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#education">Education</a></li>
-                    <li><a href="#interests">Interests</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#skills" class="nav-link">Skills</a></li>
+                    <li><a href="#education" class="nav-link">Education</a></li>
+                    <li><a href="#interests" class="nav-link">Interests</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
             </div>
         </nav>
@@ -192,6 +193,18 @@
         <p>&copy; 2025 Joseph Nzau. All rights reserved.</p>
     </footer>
 
-    <script src="Assets/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navToggle = document.getElementById('nav-toggle');
+            const navLinks = document.querySelectorAll('.nav-links a');
+
+            // Close menu when clicking on a nav link
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    navToggle.checked = false;
+                });
+            });
+        });
+    </script>
 </body>
 </html>

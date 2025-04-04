@@ -63,6 +63,7 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
 
 .logo {
@@ -103,6 +104,10 @@ main {
 
 .nav-links a:hover::after {
     width: 100%;
+}
+
+.nav-toggle {
+    display: none;
 }
 
 .hamburger {
@@ -473,7 +478,47 @@ footer {
 }
 
 /* Responsive Design */
+@media (max-width: 1200px) {
+    .nav-container {
+        padding: 0 1.5rem;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .section {
+        padding: 4rem 1.5rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .hero-content h1[style*="font-size: 20px"] {
+        font-size: 18px !important;
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media (max-width: 768px) {
+    .navbar {
+        padding: 0.8rem 0;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+    }
+
     .hamburger {
         display: flex;
     }
@@ -492,7 +537,7 @@ footer {
         gap: 1.5rem;
     }
 
-    .nav-links.active {
+    .nav-toggle:checked ~ .nav-links {
         left: 0;
     }
 
@@ -500,34 +545,131 @@ footer {
         font-size: 1.2rem;
     }
 
-    .hero-section h1 {
-        font-size: 2rem;
+    .hero-section {
+        padding: 6rem 1rem 4rem;
     }
 
-    .contact-container {
-        grid-template-columns: 1fr;
-        gap: 2rem;
+    .hero-content {
+        padding: 0 1rem;
     }
 
-    .contact-form {
-        max-width: 100%;
+    .hero-content h1 {
+        font-size: 1.8rem;
     }
 
-    .socials {
-        max-width: 100%;
+    .hero-content h1[style*="font-size: 20px"] {
+        font-size: 16px !important;
+    }
+
+    .profile-picture {
+        width: 150px;
+        height: 150px;
     }
 
     .section {
         padding: 3rem 1rem;
     }
 
+    .section h2 {
+        font-size: 1.8rem;
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
     .projects-grid {
         grid-template-columns: 1fr;
-        padding: 0 1rem;
+        gap: 2rem;
+    }
+
+    .contact-container {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .contact-form {
+        width: 100%;
+    }
+
+    .socials {
+        width: 100%;
+    }
+
+    /* Close menu when clicking About link */
+    #about:target ~ .nav-toggle:checked ~ .nav-links {
+        left: -100%;
+    }
+
+    /* Reset hamburger when About section is targeted */
+    #about:target ~ .nav-toggle:checked ~ .hamburger span {
+        transform: none;
+        opacity: 1;
+    }
+
+    /* Hamburger Animation */
+    .nav-toggle:checked ~ .hamburger span:nth-child(1) {
+        transform: rotate(45deg) translate(8px, 8px);
+    }
+
+    .nav-toggle:checked ~ .hamburger span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .nav-toggle:checked ~ .hamburger span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-content h1 {
+        font-size: 1.5rem;
+    }
+
+    .hero-content h1[style*="font-size: 20px"] {
+        font-size: 14px !important;
+    }
+
+    .profile-picture {
+        width: 120px;
+        height: 120px;
+    }
+
+    .section h2 {
+        font-size: 1.5rem;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .interest-item {
+        padding: 1.5rem;
+    }
+
+    .interest-item h3 {
+        font-size: 1.2rem;
+    }
+
+    .interest-item p {
+        font-size: 0.9rem;
+    }
+
+    .project-card {
+        margin: 0 1rem;
     }
 
     .project-content {
         padding: 1.2rem;
+    }
+
+    .project-content h3 {
+        font-size: 1.2rem;
+    }
+
+    .project-content p {
+        font-size: 0.9rem;
     }
 
     .project-links {
@@ -540,9 +682,71 @@ footer {
         justify-content: center;
     }
 
-    .profile-picture {
-        width: 150px;
-        height: 150px;
+    .form-group input,
+    .form-group textarea {
+        font-size: 0.9rem;
+    }
+
+    .submit-button {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .social-icons {
+        gap: 1rem;
+    }
+
+    .social-icon {
+        font-size: 1.2rem;
+    }
+}
+
+/* Fix for typing animation on mobile */
+@media (max-width: 768px) {
+    .typing-text {
+        white-space: normal;
+        animation: none;
+        width: 100%;
+    }
+
+    .hero-subtitle.typing-text {
+        animation: none;
+    }
+}
+
+/* Fix for form elements on mobile */
+@media (max-width: 576px) {
+    .form-group label {
+        font-size: 0.9rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        padding: 0.8rem;
+    }
+
+    .form-group textarea {
+        min-height: 100px;
+    }
+}
+
+/* Fix for education section on mobile */
+@media (max-width: 576px) {
+    .education-item {
+        padding: 1.5rem;
+    }
+
+    .education-item h3 {
+        font-size: 1.2rem;
+    }
+
+    .education-item p {
+        font-size: 0.9rem;
+    }
+
+    .download-cv {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
     }
 }
 
